@@ -63,7 +63,7 @@ public class OrderController {
         if (!orderOptional.isPresent()) {
             throw new NotFoundException("Order not found");
         }
-        if (orderOptional.get().getUser().getId().equals(userid)) {
+        if (orderOptional.get().getUser().getUserid().equals(userid)) {
 
             return orderOptional;
         }
