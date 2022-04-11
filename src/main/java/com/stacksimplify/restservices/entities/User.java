@@ -1,10 +1,6 @@
 package com.stacksimplify.restservices.entities;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonView;
-import org.springframework.hateoas.RepresentationModel;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.List;
+
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "user")
@@ -58,10 +57,14 @@ public class User extends RepresentationModel {
     @JsonView(Views.Internal.class)
     private List<Order> orders;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     public User() {
     }
 
-    public User(Long userid, String username, String firstname, String lastname, String email, String role, String ssn, List<Order> orders) {
+    public User(Long userid, String username, String firstname, String lastname, String email,
+            String role, String ssn, List<Order> orders, String address) {
         this.userid = userid;
         this.username = username;
         this.firstname = firstname;
@@ -70,6 +73,7 @@ public class User extends RepresentationModel {
         this.role = role;
         this.ssn = ssn;
         this.orders = orders;
+        this.address = address;
     }
 
     public Long getUserid() {
@@ -136,8 +140,19 @@ public class User extends RepresentationModel {
         this.orders = orders;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\'' + ", role='" + role + '\'' + ", ssn='" + ssn + '\'' + '}';
+        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", firstname='"
+                + firstname + '\'' + ", lastname='" + lastname + '\'' + ", email='" + email + '\''
+                + ", role='" + role + '\'' + ", ssn='" + ssn + '\'' + ", orders=" + orders
+                + ", address='" + address + '\'' + '}';
     }
 }
