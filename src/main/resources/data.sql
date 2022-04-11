@@ -1,6 +1,6 @@
-insert into user values(101,'mlopez@hh.com', 'Mario', 'Lopez', 'admin', 'ssn1', 'mlopez');
-insert into user values(102,'dalua@hh.com', 'Dalua', 'Mendez', 'admin', 'ssn12', 'dmendez');
-insert into user values(103,'amenadiel@hh.com', 'Amenadiel', 'Dios', 'admin', 'ssn123', 'adios');
+insert into user values(101,'New York', 'mlopez@hh.com', 'Mario', 'Lopez', 'admin', 'ssn1', 'mlopez');
+insert into user values(102,'New Jersey', 'dalua@hh.com', 'Dalua', 'Mendez', 'admin', 'ssn12', 'dmendez');
+insert into user values(103,'California', 'amenadiel@hh.com', 'Amenadiel', 'Dios', 'admin', 'ssn123', 'adios');
 insert into orders values(2001, 'order11', 101);
 insert into orders values(2002, 'order12', 101);
 insert into orders values(2003, 'order13', 101);
