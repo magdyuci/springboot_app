@@ -28,7 +28,7 @@ public class UserCustomHeaderVersioningController {
     private ModelMapper modelMapper;
 
     // Custom Header based versioning V1
-    @GetMapping(value = "/{id}", headers = "API-VERSION=1")
+    @GetMapping(value = "/v1/{id}", headers = "API-VERSION=1")
     public UserDtoV1 getUserById(@PathVariable("id") @Min(1) Long id) throws UserNotFoundException {
 
         Optional<User> userOptional = userService.getUserById(id);

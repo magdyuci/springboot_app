@@ -5,9 +5,9 @@ import com.stacksimplify.restservices.exceptions.UserExistsException;
 import com.stacksimplify.restservices.exceptions.UserNameNotFoundException;
 import com.stacksimplify.restservices.exceptions.UserNotFoundException;
 import com.stacksimplify.restservices.services.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Optional;
 
-@Api(tags = "User managements REST Services", value = "UserController", description = "Controller for user management controller")
+@Tag(name = "UserController", description = "Controller for user management controller")
 @RestController
 @Validated
 @RequestMapping(value = "/users")
@@ -39,15 +39,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "Retrieve list of users")
+    @Operation(summary = "Retrieve list of users")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @ApiOperation(value = "Creates a new user")
+    @Operation(summary = "Creates a new user")
     @PostMapping
-    public ResponseEntity<Void> createUser(@ApiParam("User information for a new user to be created.") @Valid @RequestBody User user, UriComponentsBuilder builder) {
+    public ResponseEntity<Void> createUser(@Parameter(name = "user", description = "User information for a new user to be created.") @Valid @RequestBody User user, UriComponentsBuilder builder) {
         try {
             userService.createUser(user);
             HttpHeaders headers = new HttpHeaders();
